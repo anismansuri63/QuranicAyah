@@ -51,6 +51,7 @@ The app uses the [AlQuran Cloud API](https://alquran.cloud/api) to fetch:
 
 ---
 📌 TODO (Optional Enhancements)
+
  Add Tafsir per ayah (via another API)
 
  Daily Notification with Ayah
