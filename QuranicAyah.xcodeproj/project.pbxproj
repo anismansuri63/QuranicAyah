@@ -10,9 +10,22 @@
 		D1378A012E393BBD00D71B51 /* QuranicAyah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuranicAyah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D1E1A5682E3A6942009C97FB /* Exceptions for "QuranicAyah" folder in "QuranicAyah" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D1378A002E393BBD00D71B51 /* QuranicAyah */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D1378A032E393BBD00D71B51 /* QuranicAyah */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D1E1A5682E3A6942009C97FB /* Exceptions for "QuranicAyah" folder in "QuranicAyah" target */,
+			);
 			path = QuranicAyah;
 			sourceTree = "<group>";
 		};
@@ -254,6 +267,7 @@
 				DEVELOPMENT_TEAM = GU6TNC55T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuranicAyah/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -284,6 +298,7 @@
 				DEVELOPMENT_TEAM = GU6TNC55T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuranicAyah/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

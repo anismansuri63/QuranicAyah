@@ -12,7 +12,7 @@ import SwiftData
 struct QuranicAyahApp: App {
         var body: some Scene {
         WindowGroup {
-            ContentView()
+            AyahView()
         }
     }
 }

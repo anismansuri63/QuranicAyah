@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>tradin-tradi-jpy40pvzeko3-1988303166.us-east-1.elb.amazonaws.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>YellowMoneyPlus</string>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Al-Majeed-Quranic.ttf</string>
+        <string>font.ttf</string>
+        <string>pdms-saleem-quranfont.ttf</string>
+    </array>
+
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+
+</dict>
+</plist>

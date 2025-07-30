@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-
+import UIKit
 class AyahViewModel: ObservableObject {
     @Published var arabicText = ""
     @Published var translation = ""
@@ -51,10 +51,11 @@ class AyahViewModel: ObservableObject {
             receiveValue: { [weak self] (arabic, english) in
                 self?.arabicText = arabic.text
                 self?.translation = english.text
-                self?.surahName = "\(arabic.surah.name) - \(arabic.surah.englishName)"
+                let name = "\(arabic.surah.name) - \(arabic.surah.englishName)"
+                self?.surahName = name
                 self?.audio = arabic.audio ?? ""
                 self?.isPlaying = false
-                self?.saveToArchive(arabic.text, english.text, arabic.surah.name, arabic.audio ?? "")
+                self?.saveToArchive(arabic.text, english.text, name, arabic.audio ?? "")
             }
         )
         .store(in: &cancellables)

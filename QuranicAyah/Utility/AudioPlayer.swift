@@ -13,6 +13,7 @@ class AudioPlayer: ObservableObject {
     private var observer: Any?
 
     var onFinish: (() -> Void)?
+    @AppStorage("playbackSpeed") private var playbackSpeed: Double = 1.0
 
     func playAudio(from urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -20,10 +21,16 @@ class AudioPlayer: ObservableObject {
             return
         }
         stop() // Stop any current audio
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set audio session category: \(error)")
+        }
         player = AVPlayer(url: url)
 
         player?.play()
-        player?.rate = 1.1
+        player?.rate = Float(playbackSpeed)
 
         // Observe end of audio
         observer = NotificationCenter.default.addObserver(
