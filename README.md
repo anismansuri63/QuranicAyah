@@ -50,6 +50,17 @@ The app uses the [AlQuran Cloud API](https://alquran.cloud/api) to fetch:
   The `AyahData.audio` property provides the URL for Arabic recitation.
 
 ---
+📌 TODO (Optional Enhancements)
+ Add Tafsir per ayah (via another API)
+
+ Daily Notification with Ayah
+
+ Bookmark favorite ayahs
+
+ Support for multiple translations
+
+ Share ayah as image
+ 
 
 🤲 Contribution
 Feel free to open issues, suggest improvements, or submit pull requests 🙌
