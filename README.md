@@ -61,9 +61,12 @@ The app uses the [AlQuran Cloud API](https://alquran.cloud/api) to fetch:
 
  Share ayah as image
  
+---
 
 🤲 Contribution
 Feel free to open issues, suggest improvements, or submit pull requests 🙌
+
+---
 
 📬 Contact
 Made with love and faith by Anis Mansuri
