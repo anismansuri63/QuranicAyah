@@ -1,16 +1,17 @@
 # QuranicAyah
 # 📖 Quranic Ayah of the Day (iOS)
 
-A beautifully simple iOS app that displays a **random daily verse (Ayah)** from the **Holy Quran**, along with its **English translation** and **Surah information**. Users can also revisit previously shown verses in the **Archive** section.
+A beautifully simple iOS app that displays a **random daily verse (Ayah)** from the **Holy Quran**, along with its **English translation**, **Surah name**, and the ability to **listen to the verse** in Arabic. Users can also revisit previously shown ayahs in the **Archive**.
 
 ---
 
 ## 🌟 Features
 
-- 🕋 Daily Quranic Ayah with:
-  - Arabic text (from Alafasy edition)
+- 🕋 **Daily Quranic Ayah** with:
+  - Arabic text (Alafasy recitation)
   - English translation (Muhammad Asad edition)
   - Surah name
+- 🔊 **Audio Playback** – Listen to the ayah in Arabic (with play button)
 - 🔁 Refresh to load another random ayah
 - 📜 Archive of previously shown ayahs
 - 💾 Local storage using `UserDefaults`
@@ -31,6 +32,7 @@ A beautifully simple iOS app that displays a **random daily verse (Ayah)** from 
 - **Swift 5**
 - **SwiftUI**
 - **Combine**
+- **AVFoundation** – for audio playback
 - **UserDefaults** for local storage
 - **AlQuran Cloud API** ([https://alquran.cloud/api](https://alquran.cloud/api))
 
@@ -38,14 +40,17 @@ A beautifully simple iOS app that displays a **random daily verse (Ayah)** from 
 
 ## 🧾 API Usage
 
-The app uses the [AlQuran Cloud API](https://alquran.cloud/api) to fetch Quranic verses:
+The app uses the [AlQuran Cloud API](https://alquran.cloud/api) to fetch:
 
-- Arabic Text: `https://api.alquran.cloud/v1/ayah/{ayahNumber}/ar.alafasy`
-- English Translation: `https://api.alquran.cloud/v1/ayah/{ayahNumber}/en.asad`
-
-Total number of ayahs = 6236. The app randomly selects one each time it is opened or refreshed.
+- Arabic Text:  
+  `https://api.alquran.cloud/v1/ayah/{ayahNumber}/ar.alafasy`
+- English Translation:  
+  `https://api.alquran.cloud/v1/ayah/{ayahNumber}/en.asad`
+- Audio URL:  
+  The `AyahData.audio` property provides the URL for Arabic recitation.
 
 ---
 
-## 🗂 Project Structure
+
+
 
