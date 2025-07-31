@@ -23,75 +23,93 @@ struct ArchiveView: View {
                         .foregroundColor(.secondary)
                         .padding(.top, 50)
                 } else {
+                    
                     ForEach(archive.indices, id: \.self) { index in
                         let ayah = archive[index]
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(ayah["arabic"] ?? "")
-                                .font(.custom(selectedFont, size: 28))
-                                .multilineTextAlignment(.leading)
-
-                            Text(ayah["english"] ?? "")
-                                .font(.subheadline)
-                                .foregroundColor(.primary)
-
-                            HStack {
-                                Text("🕌 Surah: \(ayah["surah"] ?? "")")
-                                    .font(.subheadline)
-                                    .foregroundColor(.black)
-
-                                Spacer()
-
-                                Button(action: {
-                                    if currentlyPlayingIndex == index {
-                                        audioPlayer?.pause()
-                                        audioPlayer = nil
-                                        currentlyPlayingIndex = nil
-                                    } else {
-                                        if let urlString = ayah["audio"], let url = URL(string: urlString) {
+                        NavigationLink(destination: AyahDetailView(
+                            name: ayah["surah"] ?? "",
+                               arabic: ayah["arabic"] ?? "",
+                               translation: ayah["english"] ?? "",
+                               transliteration: ayah["transliteration"] ?? "",
+                               tafsir: ayah["tafsir"] ?? "",
+                               audio: ayah["audio"] ?? ""
+                        )) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("\(ayah["surah"] ?? "")")
+                                        .font(.custom(selectedFont, size: 15))
+                                        .foregroundColor(.black)
+                                        .multilineTextAlignment(.leading)
+                                    
+                                    Spacer()
+                                    Button(action: {
+                                        if currentlyPlayingIndex == index {
                                             audioPlayer?.pause()
+                                            audioPlayer = nil
+                                            currentlyPlayingIndex = nil
+                                        } else {
+                                            if let urlString = ayah["audio"], let url = URL(string: urlString) {
+                                                audioPlayer?.pause()
 
-                                            do {
-                                                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-                                                try AVAudioSession.sharedInstance().setActive(true)
-                                            } catch {
-                                                print("Failed to set audio session category: \(error)")
-                                            }
+                                                do {
+                                                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                                                    try AVAudioSession.sharedInstance().setActive(true)
+                                                } catch {
+                                                    print("Failed to set audio session category: \(error)")
+                                                }
 
 
-                                            let playerItem = AVPlayerItem(url: url)
-                                            audioPlayer = AVPlayer(playerItem: playerItem)
-                                            audioPlayer?.play()
-                                            audioPlayer?.rate = Float(playbackSpeed)
-                                            currentlyPlayingIndex = index
+                                                let playerItem = AVPlayerItem(url: url)
+                                                audioPlayer = AVPlayer(playerItem: playerItem)
+                                                audioPlayer?.play()
+                                                audioPlayer?.rate = Float(playbackSpeed)
+                                                currentlyPlayingIndex = index
 
-                                            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                                                                   object: playerItem,
-                                                                                   queue: .main) { _ in
-                                                currentlyPlayingIndex = nil
-                                                audioPlayer = nil
+                                                NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                                                       object: playerItem,
+                                                                                       queue: .main) { _ in
+                                                    currentlyPlayingIndex = nil
+                                                    audioPlayer = nil
+                                                }
                                             }
                                         }
+                                    }) {
+                                        Image(systemName: currentlyPlayingIndex == index ? "pause.circle.fill" : "play.circle.fill")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(.green)
                                     }
-                                }) {
-                                    Image(systemName: currentlyPlayingIndex == index ? "pause.circle.fill" : "play.circle.fill")
-                                        .font(.system(size: 20))
-                                        .foregroundColor(.green)
+
+                                    // 🗑 Delete Single Ayah
+                                    Button(action: {
+                                        deleteAyah(at: index)
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                }
+                                VStack(alignment: .trailing) {
+                                    Text(ayah["arabic"] ?? "")
+                                        .font(.custom(selectedFont, size: 25))
+                                        .multilineTextAlignment(.trailing)
+                                        .foregroundColor(.primary)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                                VStack(alignment: .leading) {
+                                    Text(ayah["english"] ?? "")
+                                        .font(.subheadline)
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(.primary)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
 
-                                // 🗑 Delete Single Ayah
-                                Button(action: {
-                                    deleteAyah(at: index)
-                                }) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
+                                
                             }
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(12)
+                            .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
                         }
-                        .padding()
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(12)
-                        .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
+                        
                     }
 
                     // 🧹 Delete All Button
@@ -124,5 +142,8 @@ struct ArchiveView: View {
 }
 
 
-
-
+//
+//
+//#Preview {
+//    ArchiveView()
+//}
